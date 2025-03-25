@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit <%= car.make %></title>
+</head>
+<body>
+  <a href="/cars">Back to Cars</a>
+  <h1>Edit <%= car.make %></h1>
+  <form action="/cars/<%= car._id %>?_method=PUT" method="POST">
+  
+    <div>
+      <label for="make">Make:</label>
+      <input type="text" id="make" name="make" value="<%= car.make %>" />
+    </div>
+
+    <div>
+      <label for="model">Model:</label>
+      <input type="text" id="model" name="model" value="<%= car.model %>" />
+    </div>
+
+    <div>
+      <label for="year">Year:</label>
+      <select name="year" id="year">
+        <% const years = [2026,2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999]; %>
+        <% years.forEach(yearOption => { %>
+          <option value="<%= yearOption %>" <%= car.year == yearOption ? 'selected' : '' %>>
+            <%= yearOption %>
+          </option>
+        <% }); %>
+      </select>
+    </div>
+
+    <div>
+      <label for="color">Color:</label>
+      <input type="color" id="color" name="color" value="<%= car.color %>" />
+    </div>
+
+    <button type="submit">Update Car</button>
+  
+  </form>
+  
+</body>
+</html>
